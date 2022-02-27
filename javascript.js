@@ -8,5 +8,12 @@ function computerPlay() {
   } else {
     result = "Scissors";
   }
-  console.log(result);
+  return result;
+}
+
+function playerSelection() {
+  let playerChoice = prompt(
+    "Please select your move, Rock, Paper or Scissors: "
+  ).toLocaleLowerCase();
+  return playerChoice;
 }
