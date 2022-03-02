@@ -43,20 +43,20 @@ function game() {
     }
   }
 
-  while (playerScore < 3 || computerScore < 3) {
-    console.log(
-      `Round ${round}\n Player: ${playerScore}\nComputer: ${computerScore}`
-    );
-    playRound(playerSelection(), computerPlay());
-    round++;
-    if (playerScore === 3) {
-      console.log(`Player wins!`);
-      return;
-    } else if (computerScore === 3) {
-      console.log(`Computer wins!`);
-      return;
-    }
-  }
+  // while (playerScore < 3 || computerScore < 3) {
+  //   console.log(
+  //     `Round ${round}\n Player: ${playerScore}\nComputer: ${computerScore}`
+  //   );
+  //   playRound(playerSelection(), computerPlay());
+  //   round++;
+  //   if (playerScore === 3) {
+  //     console.log(`Player wins!`);
+  //     return;
+  //   } else if (computerScore === 3) {
+  //     console.log(`Computer wins!`);
+  //     return;
+  //   }
+  // }
 }
 
 game();
