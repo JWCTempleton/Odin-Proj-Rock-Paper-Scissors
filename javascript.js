@@ -11,52 +11,53 @@ function computerPlay() {
   return result;
 }
 
-function playerSelection() {
-  let playerChoice = prompt(
-    "Please select your move, Rock, Paper or Scissors: "
-  ).toLocaleLowerCase();
-  return playerChoice;
-}
+let round = 1;
+let playerScore = 0;
+let computerScore = 0;
 
-function game() {
-  let round = 1;
-  let playerScore = 0;
-  let computerScore = 0;
+const rockButton = document.querySelector(".btn-rock");
+const paperButton = document.querySelector(".btn-paper");
+const scissorsButton = document.querySelector(".btn-scissors");
 
-  function playRound(playerChoice, computerChoice) {
-    if (
-      (playerChoice === "rock" && computerChoice === "scissors") ||
-      (playerChoice === "paper" && computerChoice === "rock") ||
-      (playerChoice === "scissors" && computerChoice === "paper")
-    ) {
-      playerScore++;
-      console.log(`You win, ${playerChoice} beats ${computerChoice}!`);
-    } else if (
-      (playerChoice === "rock" && computerChoice === "paper") ||
-      (playerChoice === "paper" && computerChoice === "scissors") ||
-      (playerChoice === "scissors" && computerChoice === "rock")
-    ) {
-      computerScore++;
-      console.log(`Computer wins, ${computerChoice} beats ${playerChoice}!`);
-    } else {
-      console.log("Tie game!");
-    }
+rockButton.addEventListener("click", () => {
+  let playerChoice = "rock";
+  playRound(playerChoice, computerPlay());
+  round++;
+});
+paperButton.addEventListener("click", () => {
+  let playerChoice = "paper";
+  playRound(playerChoice, computerPlay());
+  round++;
+});
+scissorsButton.addEventListener("click", () => {
+  let playerChoice = "scissors";
+  playRound(playerChoice, computerPlay());
+  round++;
+});
+
+function playRound(playerChoice, computerChoice) {
+  console.log(`Round: ${round}`);
+  if (
+    (playerChoice === "rock" && computerChoice === "scissors") ||
+    (playerChoice === "paper" && computerChoice === "rock") ||
+    (playerChoice === "scissors" && computerChoice === "paper")
+  ) {
+    playerScore++;
+    console.log(`You win, ${playerChoice} beats ${computerChoice}!`);
+  } else if (
+    (playerChoice === "rock" && computerChoice === "paper") ||
+    (playerChoice === "paper" && computerChoice === "scissors") ||
+    (playerChoice === "scissors" && computerChoice === "rock")
+  ) {
+    computerScore++;
+    console.log(`Computer wins, ${computerChoice} beats ${playerChoice}!`);
+  } else {
+    console.log("Tie game!");
   }
 
-  // while (playerScore < 3 || computerScore < 3) {
-  //   console.log(
-  //     `Round ${round}\n Player: ${playerScore}\nComputer: ${computerScore}`
-  //   );
-  //   playRound(playerSelection(), computerPlay());
-  //   round++;
-  //   if (playerScore === 3) {
-  //     console.log(`Player wins!`);
-  //     return;
-  //   } else if (computerScore === 3) {
-  //     console.log(`Computer wins!`);
-  //     return;
-  //   }
-  // }
+  if (playerScore === 3) {
+    console.log(`Player wins the game in round ${round}!`);
+  } else if (computerScore === 3) {
+    console.log(`Computer wins the game in round ${round}!`);
+  }
 }
-
-game();
