@@ -15,6 +15,7 @@ let round = 1;
 let playerScore = 0;
 let computerScore = 0;
 
+// Button Event Listener Logic
 const rockButton = document.querySelector(".btn-rock");
 const paperButton = document.querySelector(".btn-paper");
 const scissorsButton = document.querySelector(".btn-scissors");
@@ -35,29 +36,48 @@ scissorsButton.addEventListener("click", () => {
   round++;
 });
 
+// DOM Manipulation Logic
+const header = document.querySelector(".header");
+const resultsDiv = document.createElement("div");
+const roundDiv = document.createElement("div");
+const playerScoreDiv = document.createElement("div");
+const computerScoreDiv = document.createElement("div");
+
 function playRound(playerChoice, computerChoice) {
-  console.log(`Round: ${round}`);
+  roundDiv.textContent = `Round: ${round}`;
+
+  header.appendChild(roundDiv);
+
   if (
     (playerChoice === "rock" && computerChoice === "scissors") ||
     (playerChoice === "paper" && computerChoice === "rock") ||
     (playerChoice === "scissors" && computerChoice === "paper")
   ) {
     playerScore++;
-    console.log(`You win, ${playerChoice} beats ${computerChoice}!`);
+    resultsDiv.textContent = `\r\rYou win, ${playerChoice} beats ${computerChoice}!`;
+    header.appendChild(resultsDiv);
   } else if (
     (playerChoice === "rock" && computerChoice === "paper") ||
     (playerChoice === "paper" && computerChoice === "scissors") ||
     (playerChoice === "scissors" && computerChoice === "rock")
   ) {
     computerScore++;
-    console.log(`Computer wins, ${computerChoice} beats ${playerChoice}!`);
+    resultsDiv.textContent = `\r\rComputer wins, ${computerChoice} beats ${playerChoice}!`;
+    header.appendChild(resultsDiv);
   } else {
-    console.log("Tie game!");
+    resultsDiv.textContent = "\r\rTie game!";
+    header.appendChild(resultsDiv);
   }
+  playerScoreDiv.textContent = "Player Score: " + playerScore;
+  computerScoreDiv.textContent = "Computer Score: " + computerScore;
+  header.appendChild(playerScoreDiv);
+  header.appendChild(computerScoreDiv);
 
   if (playerScore === 3) {
-    console.log(`Player wins the game in round ${round}!`);
+    header.removeChild(roundDiv);
+    resultsDiv.textContent = `Player wins the game in round ${round}!`;
   } else if (computerScore === 3) {
-    console.log(`Computer wins the game in round ${round}!`);
+    header.removeChild(roundDiv);
+    resultsDiv.textContent = `Computer wins the game in round ${round}!`;
   }
 }
